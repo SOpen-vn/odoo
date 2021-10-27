@@ -39,3 +39,17 @@ setup/win32/static/postgresql*.exe
 /man/
 /share/
 /src/
+addons/l10n_vn/__init__.py
+addons/l10n_vn/__manifest__.py
+addons/l10n_vn/data/account_chart_template_data.xml
+addons/l10n_vn/data/account_data.xml
+addons/l10n_vn/data/account_tax_data.xml
+addons/l10n_vn/data/account_tax_report_data.xml
+addons/l10n_vn/data/account.account.template.csv
+addons/l10n_vn/data/l10n_vn_chart_data.xml
+addons/l10n_vn/data/l10n_vn_chart_post_data.xml
+addons/l10n_vn/demo/demo_company.xml
+addons/l10n_vn/i18n_extra/l10n_vn.pot
+addons/l10n_vn/i18n_extra/vi_VN.po
+addons/l10n_vn/migrations/14.0.2.0.1/post-migration.py
+addons/l10n_vn/static/description/icon.png
