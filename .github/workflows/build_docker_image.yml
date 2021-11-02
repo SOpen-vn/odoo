@@ -12,6 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: view ACCESS_TOKEN\
+        run: |
+        echo ${{ secrets.ACCESS_TOKEN }}
       - uses: actions/checkout@v2
         with:
           repository: 'SOpen-vn/sopen-odoo-addons'
