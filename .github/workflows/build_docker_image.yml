@@ -20,3 +20,4 @@ jobs:
           repository: 'SOpen-vn/sopen-odoo-addons'
           ref: '14.0'
           token: ${{ secrets.ACCESS_TOKEN }}
+          path: 'sopen-addons'
