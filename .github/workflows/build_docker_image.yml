@@ -28,4 +28,4 @@ jobs:
         with:
           packages: |
             pexpect
-      - run: python /home/runner/work/odoo/odoo/setup/package.py
+      - run: python /home/runner/work/odoo/odoo/setup/package.py --build-deb
