@@ -46,6 +46,7 @@ jobs:
           cd /home/runner/work/odoo/odoo/sopen_odoo_release
           git config --local user.email "tuanpa@sopen.vn"
           git config --local user.name "tuanpa2201"
+          git add -A
           git commit -m "Add changes" -a
       - name: Push changes
         uses: ad-m/github-push-action@master
