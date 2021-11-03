@@ -11,47 +11,59 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: view ACCESS_TOKEN\
-        run: |
-          echo ${{ secrets.ACCESS_TOKEN }}
-      - uses: actions/checkout@v2
-        with:
-          repository: 'SOpen-vn/sopen-odoo-addons'
-          ref: '14'
-          token: ${{ secrets.ACCESS_TOKEN }}
-          path: 'sopen-addons'
-      - uses: actions/setup-python@v2
-        with:
-          python-version: '3.7'
-      - uses: BSFishy/pip-action@v1
-        with:
-          packages: |
-            pexpect
-      - run: python /home/runner/work/odoo/odoo/setup/package.py --build-deb
+#       - uses: actions/checkout@v2
+#       - name: view ACCESS_TOKEN\
+#         run: |
+#           echo ${{ secrets.ACCESS_TOKEN }}
+#       - uses: actions/checkout@v2
+#         with:
+#           repository: 'SOpen-vn/sopen-odoo-addons'
+#           ref: '14'
+#           token: ${{ secrets.ACCESS_TOKEN }}
+#           path: 'sopen-addons'
+#       - uses: actions/setup-python@v2
+#         with:
+#           python-version: '3.7'
+#       - uses: BSFishy/pip-action@v1
+#         with:
+#           packages: |
+#             pexpect
+#       - run: python /home/runner/work/odoo/odoo/setup/package.py --build-deb
 
-      - name: Checkout release repo
-        uses: actions/checkout@v2
-        with:
-          repository: 'SOpen-vn/sopen_odoo_release'
-          ref: 'main'
-          token: ${{ secrets.ACCESS_TOKEN }}
-          path: 'sopen_odoo_release'
+#       - name: Checkout release repo
+#         uses: actions/checkout@v2
+#         with:
+#           repository: 'SOpen-vn/sopen_odoo_release'
+#           ref: 'main'
+#           token: ${{ secrets.ACCESS_TOKEN }}
+#           path: 'sopen_odoo_release'
+#       - name: Create local changes
+#         run: |
+#           touch test.txt
+#           cp /home/runner/work/odoo/odoo-release/deb/* /home/runner/work/odoo/odoo/sopen_odoo_release/debian
+#       - name: Commit files
+#         run: |
+#           cd /home/runner/work/odoo/odoo/sopen_odoo_release
+#           git config --local user.email "tuanpa@sopen.vn"
+#           git config --local user.name "tuanpa2201"
+#           git add -A
+#           git commit -m "Add changes" -a
+#       - name: Push changes
+#         uses: ad-m/github-push-action@master
+#         with:
+#           directory: '/home/runner/work/odoo/odoo/sopen_odoo_release'
+#           github_token: ${{ secrets.ACCESS_TOKEN }}
+#           repository: 'SOpen-vn/sopen_odoo_release'
+#           branch: 'main'
+
       - name: Create local changes
         run: |
           touch test.txt
-          cp /home/runner/work/odoo/odoo-release/deb/* /home/runner/work/odoo/odoo/sopen_odoo_release/debian
-      - name: Commit files
-        run: |
-          cd /home/runner/work/odoo/odoo/sopen_odoo_release
-          git config --local user.email "tuanpa@sopen.vn"
-          git config --local user.name "tuanpa2201"
-          git add -A
-          git commit -m "Add changes" -a
-      - name: Push changes
-        uses: ad-m/github-push-action@master
+      - uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          directory: '/home/runner/work/odoo/odoo/sopen_odoo_release'
-          github_token: ${{ secrets.ACCESS_TOKEN }}
-          repository: 'SOpen-vn/sopen_odoo_release'
-          branch: 'main'
+          repo_token: "${{ secrets.ACCESS_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: false
+          title: "Sopen Odoo Debian Build"
+          files: |
+            test.txt
