@@ -43,8 +43,8 @@ jobs:
           cp test.txt /home/runner/work/odoo/odoo/sopen_odoo_release
       - name: Commit files
         run: |
-          git config --local user.email "tuanpa@sopen.vn"
-          git config --local user.name "tuanpa2201"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git commit -m "Add changes" -a
       - name: Push changes
         uses: ad-m/github-push-action@master
