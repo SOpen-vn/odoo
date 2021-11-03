@@ -29,6 +29,15 @@ jobs:
 #           packages: |
 #             pexpect
 #       - run: python /home/runner/work/odoo/odoo/setup/package.py --build-deb
+
+      
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
       - name: Checkout Odoo Docker
         uses: actions/checkout@v2
         with:
@@ -52,7 +61,8 @@ jobs:
           file: /home/runner/work/odoo/odoo/docker/14.0/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/sopen_odoo:latest
-
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
       
