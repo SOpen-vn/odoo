@@ -51,6 +51,7 @@ jobs:
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
+          directory: '/home/runner/work/odoo/odoo/sopen_odoo_release'
           github_token: ${{ secrets.ACCESS_TOKEN }}
           repository: 'SOpen-vn/sopen_odoo_release'
           branch: 'main'
