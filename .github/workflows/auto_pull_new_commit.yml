@@ -1,0 +1,21 @@
+
+name: Auto pull new commits
+on:
+  schedule:
+    - cron:  '0 1 * * *'
+  workflow_dispatch:
+jobs:
+  merge-upstream:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: 14.0
+          fetch-depth: 0 
+      - name: Merge Upstream
+        uses: exions/merge-upstream@v1
+        with:
+          upstream: odoo/odoo
+          upstream-branch: 14.0
+          branch: 14.0
