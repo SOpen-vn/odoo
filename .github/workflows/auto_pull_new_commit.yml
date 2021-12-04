@@ -20,8 +20,8 @@ jobs:
           git remote -v
           git branch --all
           git config --list
-          git checkout 14.0 --allow-unrelated-histories
-          git merge --ff-only upstream/odoo
+          git checkout 14.0
+          git merge --ff-only upstream/odoo --allow-unrelated-histories
           git push 
         shell: bash
           
