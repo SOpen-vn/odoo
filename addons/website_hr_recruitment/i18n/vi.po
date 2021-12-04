@@ -368,7 +368,7 @@ msgstr "Tuyển dụng"
 #. module: website_hr_recruitment
 #: model_terms:ir.ui.view,arch_db:website_hr_recruitment.index
 msgid "Join us and help disrupt the enterprise market!"
-msgstr "Tham gia cùng chúng tôi và cùng khuấy đảo thị trường kinh doanh!"
+msgstr "Tham gia cùng chúng tôi và cùng khuấy đảo thị trường kinh doanh!"
 
 #. module: website_hr_recruitment
 #: model_terms:ir.ui.view,arch_db:website_hr_recruitment.index

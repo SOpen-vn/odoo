@@ -494,13 +494,10 @@ def test_exe(args):
 def parse_args():
     ap = argparse.ArgumentParser()
     build_dir = "%s-%s" % (ROOTDIR, TSTAMP)
-    pub_dir = "%s-release" % (ROOTDIR)
-    
     log_levels = {"debug": logging.DEBUG, "info": logging.INFO, "warning": logging.WARN, "error": logging.ERROR, "critical": logging.CRITICAL}
 
     ap.add_argument("-b", "--build-dir", default=build_dir, help="build directory (%(default)s)", metavar="DIR")
-    ap.add_argument("-p", "--pub", default=pub_dir, help="pub directory %(default)s", metavar="DIR")
-    
+    ap.add_argument("-p", "--pub", default=None, help="pub directory %(default)s", metavar="DIR")
     ap.add_argument("--logging", action="store", choices=list(log_levels.keys()), default="info", help="Logging level")
     ap.add_argument("--build-deb", action="store_true")
     ap.add_argument("--build-rpm", action="store_true")
