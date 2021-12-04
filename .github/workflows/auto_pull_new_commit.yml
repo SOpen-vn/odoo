@@ -16,8 +16,12 @@ jobs:
           ref: '14.0'
       - name: Fetch from odoo/odoo
         run: |
-          git config pull.rebase false
-          git pull https://github.com/odoo/odoo 14.0 --allow-unrelated-histories
-          git commit -m "Fetch and merge upstream odoo"
-          git push
-          echo "Success"
+          git remote add -f upstream "https://github.com/${{ inputs.upstream }}.git" --allow-unrelated-histories
+          git remote -v
+          git branch --all
+          git config --list
+          git checkout ${{ inputs.branch }}
+          git merge --ff-only upstream/${{ inputs.upstream-branch }}
+          git push 
+        shell: bash
+          
