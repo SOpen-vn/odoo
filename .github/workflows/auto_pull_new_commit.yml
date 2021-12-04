@@ -15,9 +15,13 @@ jobs:
         run: |
           git config --global user.name 'Hoang Manh'
           git config --global user.email 'manhhoang.vp95@gmail.com'
-      - name: Merge Upstream
-        uses: exions/merge-upstream@v1
-        with:
-          upstream: odoo/odoo
-          upstream-branch: '14.0'
-          branch: '14.0'
+      - name: Fetch from odoo/odoo
+        run: |
+          git remote add -f upstream "https://github.com/odoo/odoo.git"
+          git remote -v
+          git branch --all
+          git config --list
+          git checkout 14.0
+          git merge --ff-only upstream/odoo --allow-unrelated-histories
+          git push 
+        shell: bash
