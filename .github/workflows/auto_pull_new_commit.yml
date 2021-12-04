@@ -17,11 +17,7 @@ jobs:
           git config --global user.email 'manhhoang.vp95@gmail.com'
       - name: Fetch from odoo/odoo
         run: |
-          git remote add -f upstream "https://github.com/odoo/odoo.git"
-          git remote -v
-          git branch --all
-          git config --list
-          git checkout 14.0
-          git merge --ff-only upstream/odoo --allow-unrelated-histories
+          git pull https://github.com/odoo/odoo.git 14.0
+          git commit -a -m "Merge upstream odoo/odoo"
           git push 
         shell: bash
