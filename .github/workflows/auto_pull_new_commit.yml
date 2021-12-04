@@ -19,6 +19,5 @@ jobs:
       - name: Fetch from odoo/odoo
         run: |
           git pull -s recursive -X theirs https://github.com/odoo/odoo.git 14.0 --allow-unrelated-histories
-          git commit -a -m "Merge upstream odoo/odoo"
           git push 
         shell: bash
