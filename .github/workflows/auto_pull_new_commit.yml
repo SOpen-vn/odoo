@@ -16,11 +16,11 @@ jobs:
           ref: '14.0'
       - name: Fetch from odoo/odoo
         run: |
-          git remote add -f upstream "https://github.com/${{ inputs.upstream }}.git" --allow-unrelated-histories
+          git remote add -f upstream "https://github.com/${{ inputs.upstream }}.git"
           git remote -v
           git branch --all
           git config --list
-          git checkout ${{ inputs.branch }}
+          git checkout ${{ inputs.branch }} --allow-unrelated-histories
           git merge --ff-only upstream/${{ inputs.upstream-branch }}
           git push 
         shell: bash
