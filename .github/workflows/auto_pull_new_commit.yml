@@ -4,8 +4,6 @@ on:
   schedule:
     - cron:  '0 1 * * *'
   workflow_dispatch:
-  push:
-    branches: [14.0]
 jobs:
   merge-upstream:
     runs-on: ubuntu-latest
@@ -21,7 +19,7 @@ jobs:
           git branch --all
           git config --list
           git checkout 14.0
-          git merge --ff-only upstream/odoo --allow-unrelated-histories
+          git merge -s ours --no-commit upstream/odoo --allow-unrelated-histories
           git push 
         shell: bash
           
