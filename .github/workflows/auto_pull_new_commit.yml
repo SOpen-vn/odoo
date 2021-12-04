@@ -15,6 +15,7 @@ jobs:
         run: |
           git config --global user.name 'Hoang Manh'
           git config --global user.email 'manhhoang.vp95@gmail.com'
+          git config pull.rebase false
       - name: Fetch from odoo/odoo
         run: |
           git pull https://github.com/odoo/odoo.git 14.0
