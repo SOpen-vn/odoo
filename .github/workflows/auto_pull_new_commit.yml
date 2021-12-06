@@ -18,6 +18,8 @@ jobs:
           git config pull.rebase false
       - name: Fetch from odoo/odoo
         run: |
-          git pull -s recursive -X theirs https://github.com/odoo/odoo.git 14.0 --allow-unrelated-histories
+          git remote add upstream https://github.com/odoo/odoo.git
+          git fetch upstream
+          git merge upstream/14.0
           git push 
         shell: bash
