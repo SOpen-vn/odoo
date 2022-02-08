@@ -512,7 +512,7 @@ class PosSession(models.Model):
                     sales[sale_key] = self._update_amounts(sales[sale_key], {'amount': line['amount']}, line['date_order'])
                     # Combine tax lines
                     for tax in line['taxes']:
-                        tax_key = (tax['account_id'], tax['tax_repartition_line_id'], tax['id'], tuple(tax['tag_ids']))
+                        tax_key = (tax['account_id'] or line['income_account_id'], tax['tax_repartition_line_id'], tax['id'], tuple(tax['tag_ids']))
                         order_taxes[tax_key] = self._update_amounts(
                             order_taxes[tax_key],
                             {'amount': tax['amount'], 'base_amount': tax['base']},
@@ -1060,7 +1060,7 @@ class PosSession(models.Model):
         fully_reconciled_lines = reconcilable_lines.filtered(lambda aml: aml.full_reconcile_id)
         partially_reconciled_lines = reconcilable_lines - fully_reconciled_lines
 
-        cash_move_lines = self.env['account.move.line'].search([('statement_id', '=', self.cash_register_id.id)])
+        cash_move_lines = self.env['account.move.line'].search([('statement_id', 'in', self.statement_ids.ids)])
 
         ids = (non_reconcilable_lines.ids
                 + fully_reconciled_lines.mapped('full_reconcile_id').mapped('reconciled_line_ids').ids

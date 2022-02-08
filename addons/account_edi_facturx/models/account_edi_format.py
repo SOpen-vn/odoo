@@ -58,7 +58,7 @@ class AccountEdiFormat(models.Model):
         if not edi_document.attachment_id:
             return
 
-        pdf_writer.embed_odoo_attachment(edi_document.attachment_id)
+        pdf_writer.embed_odoo_attachment(edi_document.attachment_id, subtype='application/xml')
         if not pdf_writer.is_pdfa and str2bool(self.env['ir.config_parameter'].sudo().get_param('edi.use_pdfa', 'False')):
             try:
                 pdf_writer.convert_to_pdfa()
@@ -137,7 +137,7 @@ class AccountEdiFormat(models.Model):
         return self.env['ir.attachment'].create({
             'name': 'factur-x.xml',
             'datas': base64.encodebytes(xml_content),
-            'mimetype': '/application#2Fxml'
+            'mimetype': 'application/xml'
         })
 
     def _is_facturx(self, filename, tree):
@@ -210,8 +210,7 @@ class AccountEdiFormat(models.Model):
         invoice.move_type = default_move_type
 
         # self could be a single record (editing) or be empty (new).
-        with Form(invoice.with_context(default_move_type=default_move_type,
-                                       account_predictive_bills_disable_prediction=True)) as invoice_form:
+        with Form(invoice.with_context(default_move_type=default_move_type)) as invoice_form:
             self_ctx = self.with_company(invoice.company_id)
 
             # Partner (first step to avoid warning 'Warning! You must first select a partner.').
