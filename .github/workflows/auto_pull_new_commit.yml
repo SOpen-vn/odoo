@@ -1,27 +1,27 @@
-name: Auto pull new commits
-on:
-  schedule:
-    - cron:  '0 1 * * *'
-  workflow_dispatch:
-  push:
-    branches: [ 14.0 ]
-jobs:
-  merge-upstream:
-    runs-on: ubuntu-latest
-    steps: 
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          ref: '14.0'
-      - name: Config name and email for push action
-        run: |
-          git config --global user.name 'Hoang Manh'
-          git config --global user.email 'manhhoang.vp95@gmail.com'
-          git config pull.rebase true
-      - name: Pull upstream changes
-        id: sync
-        uses: bdougie/Fork-Sync-With-Upstream-action@fork
-        with:
-          upstream_repository: odoo/odoo
-          upstream_branch: 14.0
-          target_branch: 14.0
+# name: Auto pull new commits
+# on:
+#   schedule:
+#     - cron:  '0 1 * * *'
+#   workflow_dispatch:
+#   push:
+#     branches: [ 14.0 ]
+# jobs:
+#   merge-upstream:
+#     runs-on: ubuntu-latest
+#     steps: 
+#       - name: Checkout
+#         uses: actions/checkout@v2
+#         with:
+#           ref: '14.0'
+#       - name: Config name and email for push action
+#         run: |
+#           git config --global user.name 'Hoang Manh'
+#           git config --global user.email 'manhhoang.vp95@gmail.com'
+#           git config pull.rebase true
+#       - name: Pull upstream changes
+#         id: sync
+#         uses: bdougie/Fork-Sync-With-Upstream-action@fork
+#         with:
+#           upstream_repository: odoo/odoo
+#           upstream_branch: 14.0
+#           target_branch: 14.0
